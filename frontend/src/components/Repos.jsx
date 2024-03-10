@@ -1,19 +1,21 @@
 import Repo from "./Repo";
+import PropTypes from 'prop-types';
 
-const Repos = () => {
+const Repos = ({repos}) => {
 	return (
 		<div className={`lg:w-2/3 w-full bg-glass rounded-lg px-8 py-6`}>
 			<ol className='relative border-s border-gray-200'>
-				<Repo />
-				<Repo />
-				<Repo />
-				<Repo />
-				<Repo />
-				<Repo />
-				<Repo />
+				{repos.map((repo) => (
+					<Repo key={repo.id} repo={repo} />
+				))}
+				{repos.length === 0 && <p className="flex items-center justify-center h-32">No Repos Found</p>}
 			</ol>
 		</div>
 	);
 };
 
-export default Repos
+Repos.propTypes = {
+	repos: PropTypes.array.isRequired,
+};
+
+export default Repos;
