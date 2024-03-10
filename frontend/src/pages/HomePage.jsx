@@ -14,7 +14,11 @@ const HomePage = () => {
 	const fetchUserProfile = useCallback(async (username = "night-slayer18") => {
 		setLoading(true)
 		try {
-			const response = await fetch(`https://api.github.com/users/${username}`)
+			const response = await fetch(`https://api.github.com/users/${username}`,{
+				headers:{
+					'Authorization': `token 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`
+				}
+			})
 			const profile = await response.json()
 			setUserProfile(profile)
 
