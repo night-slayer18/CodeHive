@@ -11,7 +11,11 @@ const ExplorePage = () => {
 	const exploreRepos = (language) => async () => {
 		setLoading(true)
 		try {
-			const response = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=50`)
+			const response = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=50`,{
+				headers:{
+					'authorization': `token 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`
+				}
+			})
 			const data = await response.json()
 			setRepos(data.items)
 			setSelectedLanguage(language)

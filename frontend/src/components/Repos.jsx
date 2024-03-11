@@ -1,9 +1,10 @@
 import Repo from "./Repo";
 import PropTypes from 'prop-types';
 
-const Repos = ({repos,FullWidth}) => {
+const Repos = ({repos,FullWidth=false}) => {
+	const widthClass = FullWidth ? 'w-full' : 'lg:w-2/3 w-full';
 	return (
-		<div className={`lg:w-2/3 w-full bg-glass rounded-lg px-8 py-6`}>
+		<div className={`${widthClass} bg-glass rounded-lg px-8 py-6`}>
 			<ol className='relative border-s border-gray-200'>
 				{repos.map((repo) => (
 					<Repo key={repo.id} repo={repo} />
@@ -16,6 +17,7 @@ const Repos = ({repos,FullWidth}) => {
 
 Repos.propTypes = {
 	repos: PropTypes.array.isRequired,
+	FullWidth: PropTypes.bool
 };
 
 export default Repos;
