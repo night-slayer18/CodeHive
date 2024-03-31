@@ -6,7 +6,7 @@ const exploreReposWithLanguage = async (req, res) => {
     try {
         const response = await fetch(`https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc&per_page=50`,{
             headers: {
-                authorisation: `token ${process.env.GITHUB_API_KEY}`
+                authorization: `token ${process.env.GITHUB_API_KEY}`
             }
         })
         const data = await response.json()
