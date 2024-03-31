@@ -9,7 +9,7 @@ const getUserProfileAndRepos = async (req, res) => {
             }
         })
         const profile = await userProfile.json()
-        const userRepos = await fetch(profile.repos_url,{
+        const userRepos = await fetch(`${profile.repos_url}?page=1&per_page=100`,{
             headers: {
                 authorisation : `token ${process.env.GITHUB_API_KEY}`
             }
