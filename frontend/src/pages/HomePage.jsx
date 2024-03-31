@@ -14,22 +14,11 @@ const HomePage = () => {
 	const fetchUserProfile = useCallback(async (username = "night-slayer18") => {
 		setLoading(true)
 		try {
-			const response = await fetch(`https://api.github.com/users/${username}`,{
-				headers:{
-					'Authorization': `token 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`
-				}
-			})
-			const profile = await response.json()
-			setUserProfile(profile)
-
-			const repoResponse = await fetch(profile.repos_url)
-			const repoData = await repoResponse.json()
+			const response = await fetch(`http://localhost:5000/api/users/profile/${username}`)
+			const { profile, repoData } = await response.json()
 			repoData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+			setUserProfile(profile)
 			setRepos(repoData)
-
-			console.log('User Profile:', profile)
-			console.log('User Repos:', repoData)
-
 			return { profile, repoData }
 		} catch (error) {
 			toast.error('Error fetching user profile: ', error.message)
