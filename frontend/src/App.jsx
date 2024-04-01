@@ -12,6 +12,7 @@ import { useAuthContext } from "./context/AuthContext";
 
 function App() {
   const {authUser,loading} = useAuthContext()
+  console.log(authUser)
   if (loading) return null
   return (
     <div className="flex">
